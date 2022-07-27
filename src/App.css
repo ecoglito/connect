@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+body,html {
+  margin: 0;
+  font-family: 'Rubik';
+  background-color: #F5F6F7;
+}
+
+.modal-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 32px;
+}
+
+.modal-flex-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.nav-button {
+  background-color: transparent;
+  color: white;
+  font-family: "Rubik";
+  border: 1px solid white;
+  padding: 5px 20px 5px 20px;
+}

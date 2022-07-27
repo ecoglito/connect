@@ -1,0 +1,134 @@
+
+
+.nav {
+    background: linear-gradient(90deg, #5035F5 0%, #4FA6F8 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+}
+
+.nav a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.logo {
+    width: 100px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 5rem;
+}
+
+.modal-container {
+    
+    background-color: #F5F6F7;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.modal-header-container {
+    display: flex;
+    padding-top: 24.5px;
+    padding-bottom: 24.5px;
+    border-bottom: 1px solid #E0E0E0;
+    background-color: white;
+}
+
+.modal-header-items {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-header-text {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.modal-header-text-subtitle {
+    color: #8A97AC;
+    font-size: 12px;
+}
+
+
+.modal-header-logo {
+    width: 60px;
+    height: 60px;
+    
+}
+
+.modal-header-text-header {
+    font-weight: 400;
+    font-size: 24px;
+}
+
+
+.modal-subitem-logo-frame{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    padding-left: 10px;
+}
+
+.subitem-logo {
+    width: 42px;
+    height: 42px;
+}
+
+.modal-subitem-container {
+    display: flex;
+}
+
+.modal-subitem-container a {
+    text-decoration: none;
+}
+
+.modal-subitem-items {
+    display: flex;
+    padding-top: 15px;
+    padding-bottom: 15px; 
+    gap: 10px;
+}
+.modal-subitem-text {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-subitem-text-subtitle {
+    color: #8A97AC;
+    font-size: 12px;
+}
+
+.modal-subitem-text-header {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 24px;
+    color: #4C84FF;
+}
+
+.modal-divider {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.modal-divider hr {
+    border: 1px solid #E0E0E0;
+}
+
+

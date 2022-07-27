@@ -1,0 +1,93 @@
+form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+
+.login-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -100%);
+  
+}
+
+table {
+    margin-top: 20px;
+    border: solid 1px #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.login-modal {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.login-header {
+    background-color: white;
+    height: 76px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.login-header h4{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+label {
+    color: #52555B;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 120%;
+   
+}
+
+input {
+    height: 46px;
+    width: 432px;
+    border: 1px solid #e0e0e0;
+    font-family: "Rubik";
+    text-indent: 10px;
+    border-radius: 8px;
+}
+
+.submit-button {
+    background-color: #254CDD;
+    color: white;
+    font-family: "Rubik";
+    height: 46px;
+    width: 438px;
+    border: none;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #0D2A93;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
