@@ -1,9 +1,9 @@
 import * as React from 'react';
-import './styles.css';
-import { ReactComponent as Logo } from './logos/alchemy-white.svg';
+import './Navbar.css';
+import { ReactComponent as Logo } from '../logos/alchemy-white.svg';
 import { doc, getDoc } from "firebase/firestore"; 
 
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { getAuth, signOut } from "firebase/auth";
 
 

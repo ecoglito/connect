@@ -1,8 +1,10 @@
 form {
     display: flex;
-    width: 100%;
     justify-content: center;
     padding-bottom: 20px;
+    background-color: #F5F6F7;
+    border-radius: 0px 0px 6px 6px;
+    
 }
 
 .login-container {
@@ -32,11 +34,14 @@ table {
     border: solid 1px #e0e0e0;
     border-radius: 8px;
     text-align: center;
+    background-color: #F5F6F7;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.10);
 }
 
 .login-modal {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.10);
 }
 
 .login-header {
@@ -87,7 +92,14 @@ button:hover {
 
 .page {
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(90deg, #5035F5 0%, #4FA6F8 100%) !important;
+}
+
+.alchemy-logo {
+    padding-top: 2%;
+    width: 175px;
 }
 

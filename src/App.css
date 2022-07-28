@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
-body,html {
+.content {
   margin: 0;
   font-family: 'Rubik';
   background-color: #F5F6F7;
+  height: 100vh;
 }
+
+h1 {
+  text-align: center;
+}
+
 
 .modal-items {
   display: flex;
@@ -11,6 +17,9 @@ body,html {
   gap: 1rem;
   padding-left: 250px;
   padding-right: 250px;
+  padding-top: 100px;
+  padding-bottom: 250px;
+  
 }
 
 h2 {
@@ -24,10 +33,16 @@ h2 {
   gap: 30px;
 }
 
-.nav-button {
+button {
   background-color: transparent;
   color: white;
   font-family: "Rubik";
   border: 1px solid white;
   padding: 5px 20px 5px 20px;
+}
+
+.modal-wrappers {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }

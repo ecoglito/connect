@@ -1,0 +1,30 @@
+
+
+.nav {
+    background: linear-gradient(90deg, #5035F5 0%, #4FA6F8 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+}
+
+.nav a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 5rem;
+}
+
+.logo {
+    width: 100px;
+}

@@ -1,40 +1,9 @@
-
-
-.nav {
-    background: linear-gradient(90deg, #5035F5 0%, #4FA6F8 100%);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    
-}
-
-.nav a {
-    color: white;
-    font-size: 14px;
-    text-decoration: none;
-}
-
-.logo {
-    width: 100px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 5rem;
-}
-
-.modal-container {
-    
+.modal-container {    
     background-color: #F5F6F7;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
     margin-right: 20px;
+    padding-bottom: 10px;
 }
 
 .modal-header-container {
@@ -132,3 +101,12 @@
 }
 
 
+.modal-popup-btn {
+    background-color: black;
+    border-radius: 4px;
+
+}
+
+.admin-btn-container {
+    padding-left: 25%;
+}
