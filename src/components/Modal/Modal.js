@@ -67,24 +67,27 @@ function SubItem(props) {
         setIsOpen(!isOpen);
       }
     
-    const onSubmit = (e, title, logo, description) => {
+      const onSubmit = (e, title, logo, description) => {
         e.preventDefault();
         props.subsections[props.index] = { title: title, logo: logo, description: description }
-        updateDoc(doc(db, "sections", section.parent),  { subsections: props.subsections}).then(
-        (
-
-        ) => {
+        updateDoc(doc(db, "sections", props.parent),  { subsections: props.subsections}).then(
+        () => {
             setIsOpen(false);
             window.location.reload(false);
         }
         )
-    }
+        }
 
     const onDelete = () => {
         const newSubsections = [...props.subsections];
         newSubsections.splice(props.index, 1); 
         console.log(newSubsections);
-        updateDoc(doc(db, "sections",section.parent),  { subsections: newSubsections});
+        console.log(props.parent);
+        updateDoc(doc(db, "sections",props.parent),  { subsections: newSubsections}).then (
+            () => {
+                window.location.reload(false);
+            }
+        )
     }
 
     return (
@@ -100,7 +103,7 @@ function SubItem(props) {
                 {props.tier === "admin" && 
                 <div className = "admin-btn-container">
                     {/* <button className = "modal-popup-btn" onClick = {() => editSection(props)}>Edit</button> */}
-                    <button className = "modal-popup-btn" onClick={togglePopup} >Open Popup</button>
+                    <button className = "modal-popup-btn" onClick={togglePopup} >Edit</button>
                     <button className = "modal-popup-btn" onClick = {onDelete}>Delete</button>
                 </div>}
                 {isOpen && <Popup
@@ -122,7 +125,7 @@ function Modal(props) {
                 <Header section = {props.section} tier = {props.tier}/>
                 {props.section.subsections && props.section.subsections.map((section,i) => (
                     <div>
-                    <SubItem subsections = {props.section.subsections} tier = {props.tier} index = {i}/>
+                    <SubItem parent = {props.section.id} subsections = {props.section.subsections} tier = {props.tier} index = {i}/>
                     {end != i && <Divider />}
                     </div>
                 ))}

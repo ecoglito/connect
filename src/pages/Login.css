@@ -4,7 +4,6 @@ form {
     padding-bottom: 20px;
     background-color: #F5F6F7;
     border-radius: 0px 0px 6px 6px;
-    
 }
 
 .login-container {
@@ -21,11 +20,9 @@ form {
     flex-direction: column;
     
     width: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -100%);
+    
+    
+    
   
 }
 
@@ -92,14 +89,17 @@ button:hover {
 
 .page {
     display: flex;
-    justify-content: center;
+    justify-content: top;
+    padding-top: 5%;
+    gap: 1.5rem;
+    flex-direction: column;
+    align-items: center;
     min-width: 100vw;
     min-height: 100vh;
     background: linear-gradient(90deg, #5035F5 0%, #4FA6F8 100%) !important;
 }
 
 .alchemy-logo {
-    padding-top: 2%;
     width: 175px;
 }
 
