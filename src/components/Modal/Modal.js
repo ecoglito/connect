@@ -1,28 +1,39 @@
 import * as React from 'react';
 import './Modal.css';
-import { Popup } from "../Popup/Popup.js";
-import {db} from "../../firebase";
-import { collection, doc, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteField } from "firebase/firestore"; 
+import { EditPopup } from "../Popups/EditPopup.js";
+import { AddPopup } from "../Popups/AddPopup.js";
+ import {db} from "../../firebase";
+import {doc, updateDoc} from "firebase/firestore"; 
+
 
 
 function Header(props){
 
-    const [isOpen, setIsOpen] = React.useState(false);
-    const togglePopup = () => {
-        setIsOpen(!isOpen);
+    const [isEditOpen, setIsEditOpen] = React.useState(false);
+    const [isAddOpen, setIsAddOpen] = React.useState(false);
+
+
+    const toggleEditPopup = () => {
+        setIsEditOpen(!isEditOpen);
       }
 
-    const onSubmit = (e, title, logo, description) => {
-        e.preventDefault();
-        console.log(title);
-        updateDoc(doc(db, "sections", props.section.id), { title: title, logo: logo, description: description }).then(
-        (
+    const toggleAddPopup = () => {
+        setIsAddOpen(!isAddOpen);
+      }
 
-        ) => {
-            setIsOpen(false);
-            window.location.reload(false);
-        }
-        )
+    const onAdd = (e, title, logo, description) => {
+        e.preventDefault();
+        console.log("added the title", title);
+        const newSubsections = [...props.section.subsections];
+        newSubsections.push( {title: title, logo: logo, description: description}).then( () => {window.location.reload(false)});
+        updateDoc(doc(db, "sections", props.section.id), {subsections: newSubsections});
+    }
+    
+
+    const onEdit  = (e, title, logo, description) => {
+        e.preventDefault();
+        console.log("edited the title", title);
+        updateDoc(doc(db, "sections", props.section.id), { title: title, logo: logo, description: description }).then(() => {setIsEditOpen(false); window.location.reload(false);})
     }
     
    
@@ -39,13 +50,20 @@ function Header(props){
                 {props.tier === "admin" && 
                 <div className = "admin-btn-container">
                     {/* <button className = "modal-popup-btn" onClick = {() => editSection(props)}>Edit</button> */}
-                    <button className = "modal-popup-btn" onClick={togglePopup}>Edit</button>
+                    <button className = "modal-popup-btn" onClick={toggleEditPopup}>Edit</button>
+                    <button className = "modal-popup-btn" onClick={toggleAddPopup}>Add subsection</button>
                 </div>}
-                {isOpen && <Popup
-                    onSubmit = {onSubmit}
+                {isEditOpen && <EditPopup
+                    onEdit = {onEdit}
                     content={props.section}
-                    handleClose={togglePopup}
+                    handleClose={toggleEditPopup}
                 />}
+                {isAddOpen && <AddPopup
+                    onAdd= {onAdd}
+                    handleClose={toggleAddPopup}
+                />}
+
+
             </div>
         </div>
     )
@@ -106,11 +124,12 @@ function SubItem(props) {
                     <button className = "modal-popup-btn" onClick={togglePopup} >Edit</button>
                     <button className = "modal-popup-btn" onClick = {onDelete}>Delete</button>
                 </div>}
-                {isOpen && <Popup
-                    onSubmit = {onSubmit}
+                {isOpen && <EditPopup
+                    onEdit = {onSubmit}
                     content={section}
                     handleClose={togglePopup}
                 />}
+                
             </div>
         </div>
        

@@ -103,7 +103,10 @@
 
 .modal-popup-btn {
     background-color: black;
+    width: 125px;
     border-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
 
 }
 
