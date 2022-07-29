@@ -1,8 +1,9 @@
 .modal-container {    
     background-color: #F5F6F7;
     border: 1px solid #E0E0E0;
+    min-width: 525px;
     border-radius: 4px;
-    margin-right: 20px;
+    
     padding-bottom: 10px;
 }
 
@@ -12,11 +13,13 @@
     padding-bottom: 24.5px;
     border-bottom: 1px solid #E0E0E0;
     background-color: white;
+    justify-content: space-between;
 }
 
 .modal-header-items {
     display: flex;
     gap: 10px;
+   
 }
 
 .modal-header-text {
@@ -47,10 +50,16 @@
 
 .modal-subitem-logo-frame{
     display: flex;
+    justify-content: center;
     align-items: center;
     height: 60px;
     width: 60px;
-    padding-left: 10px;
+ 
+}
+
+.modal-header-img{
+    width: 60px;
+    height: 60px;
 }
 
 .subitem-logo {
@@ -59,7 +68,11 @@
 }
 
 .modal-subitem-container {
+    padding-top: 8px;
+    padding-bottom: 8px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .modal-subitem-container a {
@@ -92,6 +105,8 @@
 }
 
 .modal-divider {
+    margin-top: 0;
+    margin-bottom: 0;
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -102,14 +117,35 @@
 
 
 .modal-popup-btn {
-    background-color: black;
-    width: 125px;
-    border-radius: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
+    background-color: #4c84ff;
+    border: none;
+    padding: 12px 20px;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 16.8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+}
 
+
+.modal-popup-btn:hover {
+    background-color: #3d79ff
 }
 
 .admin-btn-container {
-    padding-left: 25%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+    gap: 5px;
+}
+
+.modal-info-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }

@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
+
+body {
+  background-color: #F5F6F7;
+}
 .content {
   margin: 0;
   font-family: 'Rubik';
-  background-color: #F5F6F7;
   height: 100vh;
 }
 
 h1 {
   text-align: center;
 }
-
 
 .modal-items {
   display: flex;

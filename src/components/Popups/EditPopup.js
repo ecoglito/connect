@@ -5,6 +5,16 @@ const EditPopup = props => {
   const [logo, setLogo] = React.useState(props.content.logo);
   const [title, setTitle] = React.useState(props.content.title);
   const [description, setDescription] = React.useState(props.content.description);
+  const [url, setUrl] = React.useState("/");
+  const tiers = props.content.tiers;
+  // var tierList = tiers.map(function(tier){
+  //   return (
+  //     <div className = "checkbox-wrapper">
+  //       <label>{tier}</label>
+  //       <input className = "input-checkbox" type = "checkbox" value = {tier}></input>
+  //     </div>
+  //   ) 
+  // });
   
   return (
     <div className="popup-box">
@@ -14,7 +24,7 @@ const EditPopup = props => {
           <div className = "edit-header">
                 <h4>Edit</h4>
           </div>
-            <form className = "popup-form" onSubmit = {(e) => props.onEdit(e, title, logo, description)}>
+            <form className = "popup-form" onSubmit = {(e) => props.onEdit(e, title, logo, description, url)}>
             <label>Section Title</label>
             <input onChange = {(e) => setTitle(e.target.value)} value = {title}></input>
 
@@ -23,6 +33,14 @@ const EditPopup = props => {
 
             <label>Logo</label>
             <input onChange = {(e) => setLogo(e.target.value)} value = {logo}></input>
+
+            <label>URL / Affiliate Link (subsections only)</label>
+            <input onChange = {(e) => setUrl(e.target.value)} value = {url}></input>
+
+            <label>Displayed on tier</label>
+            {/* {tierList} */}
+            
+
             <input className = "submit-btn" type = "submit"></input>
             </form>
         </div>

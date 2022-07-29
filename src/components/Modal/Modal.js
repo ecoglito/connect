@@ -21,37 +21,53 @@ function Header(props){
         setIsAddOpen(!isAddOpen);
       }
 
-    const onAdd = (e, title, logo, description) => {
+    const onAdd = (e, title, logo, description, url) => {
         e.preventDefault();
         console.log("added the title", title);
-        const newSubsections = [...props.section.subsections];
-        newSubsections.push( {title: title, logo: logo, description: description}).then( () => {window.location.reload(false)});
-        updateDoc(doc(db, "sections", props.section.id), {subsections: newSubsections});
+        const oldSubsections = [props.section.subsections];
+        console.log("old subsection", oldSubsections);
+        let newSubsections = [];
+
+        if (oldSubsections[0].length < 1) {
+            console.log("empty array");
+            newSubsections.push({title: title, logo: logo, description: description, url: url});
+            updateDoc(doc(db, "sections", props.section.id), {subsections: newSubsections}).then(() => {window.location.reload(false)});
+        }
+        else {
+            console.log("there's an item");
+            newSubsections = [...props.section.subsections];
+            newSubsections.push( {title: title, logo: logo, description: description, url: url});
+            updateDoc(doc(db, "sections", props.section.id), {subsections: newSubsections}).then(() => {window.location.reload(false)});
+        }
+
+    
+    
     }
     
 
     const onEdit  = (e, title, logo, description) => {
         e.preventDefault();
         console.log("edited the title", title);
-        updateDoc(doc(db, "sections", props.section.id), { title: title, logo: logo, description: description }).then(() => {setIsEditOpen(false); window.location.reload(false);})
+        updateDoc(doc(db, "sections", props.section.id), { title: title, logo: logo, description: description}).then(() => {setIsEditOpen(false); window.location.reload(false);})
     }
     
    
 
     return (
         <div className = "modal-header-container">
-            <div className ="modal-header-items">
-                
-                <img src = {props.section.logo} />
-                <div className = 'modal-header-text'>
-                    <span className = "modal-header-text-header">{props.section.title}</span>
-                    <span className = "modal-header-text-subtitle">{props.section.description}</span>
+                <div className = "modal-info-wrapper">
+                    
+                    <img className = "modal-header-img" src = {props.section.logo} />
+                    
+                    <div className = 'modal-header-text'>
+                        <span className = "modal-header-text-header">{props.section.title}</span>
+                        <span className = "modal-header-text-subtitle">{props.section.description}</span>
+                    </div>
                 </div>
                 {props.tier === "admin" && 
                 <div className = "admin-btn-container">
-                    {/* <button className = "modal-popup-btn" onClick = {() => editSection(props)}>Edit</button> */}
-                    <button className = "modal-popup-btn" onClick={toggleEditPopup}>Edit</button>
-                    <button className = "modal-popup-btn" onClick={toggleAddPopup}>Add subsection</button>
+                    <button className = "modal-popup-btn" onClick={toggleEditPopup}>EDIT</button>
+                    <button className = "modal-popup-btn" onClick={toggleAddPopup}>+ ADD SUBSECTION</button>
                 </div>}
                 {isEditOpen && <EditPopup
                     onEdit = {onEdit}
@@ -62,9 +78,7 @@ function Header(props){
                     onAdd= {onAdd}
                     handleClose={toggleAddPopup}
                 />}
-
-
-            </div>
+            
         </div>
     )
 }
@@ -85,16 +99,14 @@ function SubItem(props) {
         setIsOpen(!isOpen);
       }
     
-      const onSubmit = (e, title, logo, description) => {
+    const onSubmit = (e, title, logo, description, url) => {
         e.preventDefault();
-        props.subsections[props.index] = { title: title, logo: logo, description: description }
+        console.log(title);
+        console.log(url);
+        props.subsections[props.index] = { title: title, logo: logo, description: description, url: url}
         updateDoc(doc(db, "sections", props.parent),  { subsections: props.subsections}).then(
-        () => {
-            setIsOpen(false);
-            window.location.reload(false);
-        }
-        )
-        }
+        () => {setIsOpen(false); window.location.reload(false);})
+    }
 
     const onDelete = () => {
         const newSubsections = [...props.subsections];
@@ -110,29 +122,26 @@ function SubItem(props) {
 
     return (
         <div className = "modal-subitem-container">
-            <div className = "modal-subitem-items">
-                <div className = "modal-subitem-logo-frame">
-                   <img src = {section.logo} />
-                </div>
-                <div className = 'modal-subitem-text'>
-                        <a href ="mercury.com"><span className = "modal-subitem-text-header">{section.title}</span> </a>
-                        <span className = "modal-subitem-text-subtitle">{section.description}</span>
+                <div className = "modal-info-wrapper">
+                    <div className = "modal-subitem-logo-frame">
+                        <img className = "subitem-logo" src = {section.logo} />
+                    </div>
+                    <div className = 'modal-subitem-text'>
+                            <a href = {section.url} target="_blank"><span className = "modal-subitem-text-header">{section.title}</span> </a>
+                            <span className = "modal-subitem-text-subtitle">{section.description}</span>
+                    </div>
                 </div>
                 {props.tier === "admin" && 
-                <div className = "admin-btn-container">
-                    {/* <button className = "modal-popup-btn" onClick = {() => editSection(props)}>Edit</button> */}
-                    <button className = "modal-popup-btn" onClick={togglePopup} >Edit</button>
-                    <button className = "modal-popup-btn" onClick = {onDelete}>Delete</button>
-                </div>}
+                    <div className = "admin-btn-container">
+                        <button className = "modal-popup-btn" onClick={togglePopup} >Edit</button>
+                        <button className = "modal-popup-btn" onClick = {onDelete}>Delete</button>
+                    </div>
+                }
                 {isOpen && <EditPopup
                     onEdit = {onSubmit}
                     content={section}
-                    handleClose={togglePopup}
-                />}
-                
-            </div>
+                    handleClose={togglePopup}/>}
         </div>
-       
     )
 }
 

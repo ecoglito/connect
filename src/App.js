@@ -1,10 +1,13 @@
 import './App.css';
 import {Modal} from './components/Modal/Modal.js';
 import {Navbar} from './components/Navbar/Navbar';
+import {AddSectionButton} from "./components/Buttons/AddSectionButton";
+
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useEffect }from 'react';
 import {db} from "./firebase";
-import { collection, doc, getDoc, getDocs, setDoc, addDoc, updateDoc } from "firebase/firestore"; 
+import {where, query, collection, doc, getDoc, getDocs, setDoc, addDoc, updateDoc } from "firebase/firestore"; 
+import { AddPopup } from './components/Popups/AddPopup';
 
 
 function App() {
@@ -12,7 +15,11 @@ function App() {
   const [user, setUser] = React.useState(null);
   const [data, setData] = React.useState([]);
   const [tier, setTier] = React.useState("loading");
- 
+  const [isAddOpen, setIsAddOpen] = React.useState(false);
+
+  const toggleAddPopup = () => {
+    setIsAddOpen(!isAddOpen);
+  }
 
   const getUserTier = async (uid) => {
     console.log(uid)
@@ -56,16 +63,30 @@ const TieredRender = () => {
   );
 }
 
+const AddSectionButton = () => {
+  return (
+    <div className = "modal-add-section-wrapper">
+      <button className = "add-section-btn">
+        + ADD NEW SECTION
+      </button>
+    </div>
+  )
+}
+
 
 const getData = async (tier) => {
 
-  const docRef = doc(db, "tiers", tier);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    setData(docSnap.data().sections);
+  if (tier != "admin") {
+    const userSection = [];
+    const q = query(collection(db, "sections"), where("tier", "==", tier));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    userSection.push(doc.data());
+    });
+    setData(userSection)
   } 
-  else if (tier === "admin"){
+  else {
     const adminSection = [];
     const querySnapshot = await getDocs(collection(db, "sections"));
     querySnapshot.forEach((doc) => {
@@ -75,49 +96,18 @@ const getData = async (tier) => {
     });
     setData(adminSection);
     console.log(adminSection);
-    // sectionRef.forEach((doc) => {
-    //   if (doc.data().sections) {
-    //     adminSection.push(...doc.data().sections);
-    //   }
-    //   // doc.data() is never undefined for query doc snapshots
-    //   console.log(doc.id, " => ", doc.data());
-    // });
-    // // console.log("admin section", JSON.stringify(adminSection));
-    // setData(adminSection);
-    // // const docSnap = await getDoc(docRef);
-    // console.log("section ref", sectionRef);
   }
-  else {
-    console.log("error, could not retrieve data");
-  }
+
 }
 
-const insertValues = async () => {
-
-  // const docData = {
-  //   sections: [
-  //     {
-  //       title: "TITLE",
-  //       description: "DESCRIPTION",
-  //       logo: "URL",
-  //       subsection: [
-  //         {
-  //           title: "SUBTITLE",
-  //           description: "SUBDESC",
-  //           logo: "SUBLOGO"
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // };
-  // await setDoc(doc(db, "tiers", "vip"), docData)
-  // await setDoc(doc(db, "tiers", "free"), docData)
-  // await setDoc(doc(db, "tiers", "growth"), docData)
-  
-}
-
-const editData = (index, section) => {
-
+const onAdd = (e, title, logo, description) => {
+  e.preventDefault();
+  addDoc(collection(db, "sections"), {
+    title: title,
+    description: description,
+    logo: logo,
+    tier: "free",
+})
 }
 
 //if a user isn't logged in, the render this message
@@ -138,8 +128,17 @@ const editData = (index, section) => {
             <div className ="modal-items">
                 <h2>Marketplace</h2>
                 <TieredRender/>
+                {tier === "admin" && 
+                <div>
+                <button className = "add-section-btn" onClick= {toggleAddPopup}>Add New Section</button> 
+                </div>
+                }
+                {isAddOpen && <AddPopup
+                onAdd = {onAdd}
+                handleClose={toggleAddPopup} />
+                }
             </div>
-          
+            
       
           </div>
       );
