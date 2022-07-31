@@ -59,7 +59,7 @@ function Header(props){
             console.log(newSubsections);
             newSubsections.push( {title: title, logo: logo, description: description, url: url});
             updateDoc(doc(db, "sections", props.section.id), {subsections: newSubsections}).then(() => {window.location.reload(false)});
-            // .then(() => {window.location.reload(false)});
+            
         }
         else {
             console.log('error, could not add new connection');
@@ -79,9 +79,12 @@ function Header(props){
         }
 
 
-        updateDoc(doc(db, "sections", props.section.id), { title: title, logo: logo, description: description, tiers: tiers}).then(() => {setIsEditOpen(false); 
-        // window.location.reload(false);
-    })
+        updateDoc(doc(db, "sections", props.section.id), { title: title, logo: logo, description: description, tiers: tiers}).then(
+            () => {
+                setIsEditOpen(false);
+                window.location.reload(false);
+             }
+        )
     }
     
    
@@ -179,8 +182,7 @@ function SubItem(props) {
             newSubsections = [...props.subsections];
             console.log(newSubsections);
             newSubsections.push( {title: title, logo: logo, description: description, url: url});
-            updateDoc(doc(db, "sections", props.parent), {subsections: newSubsections})
-            // .then(() => {window.location.reload(false)});
+            updateDoc(doc(db, "sections", props.parent), {subsections: newSubsections}).then(() => {window.location.reload(false)});
         }
     }
 
