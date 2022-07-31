@@ -48,3 +48,19 @@ button {
   flex-direction: column;
   gap: 30px;
 }
+
+
+.add-section-btn {
+  border: 1px dashed #e0e0e0;
+  background-color: transparent;
+  color: #4C84FF;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.add-section-btn:hover {
+  background-color: transparent;
+  text-decoration: underline;
+  cursor: pointer;
+}

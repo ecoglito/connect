@@ -33,7 +33,12 @@ function Signout() {
 }
 
 
+
 function Navbar(user) {
+
+    const navigateToLogin = () => {
+        window.location = "/login";
+    }
     console.log(user);
     return (
     <nav className ="nav">
@@ -47,7 +52,7 @@ function Navbar(user) {
            <a href = "/">Marketplace</a>  
         </div>
 
-        {user.user ? <button className = "nav-button" onClick = {Signout}>Signout</button> : <a href = "/login">Login</a>}
+        {user.user ? <button className = "nav-button" onClick = {Signout}>Signout</button> : <button className = "nav-button" onClick={navigateToLogin}>Alchemy Login</button>}
         
     </nav>
     )

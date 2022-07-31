@@ -1,7 +1,7 @@
 import './App.css';
 import {Modal} from './components/Modal/Modal.js';
 import {Navbar} from './components/Navbar/Navbar';
-import {AddSectionButton} from "./components/Buttons/AddSectionButton";
+
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useEffect }from 'react';
@@ -63,15 +63,6 @@ const TieredRender = () => {
   );
 }
 
-const AddSectionButton = () => {
-  return (
-    <div className = "modal-add-section-wrapper">
-      <button className = "add-section-btn">
-        + ADD NEW SECTION
-      </button>
-    </div>
-  )
-}
 
 
 const getData = async (tier) => {
@@ -90,8 +81,6 @@ const getData = async (tier) => {
     const adminSection = [];
     const querySnapshot = await getDocs(collection(db, "sections"));
     querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
       adminSection.push(doc.data())
     });
     setData(adminSection);
@@ -102,14 +91,26 @@ const getData = async (tier) => {
 
 const onAdd = (e, title, logo, description) => {
   e.preventDefault();
+  const tiers = {
+    free: true,
+    growth: true,
+    vip: true,
+  }
+
+  const subsections = ["empty"];
+
   addDoc(collection(db, "sections"), {
     title: title,
     description: description,
     logo: logo,
     tier: "free",
-})
-}
+    tiers: tiers,
+    subsections: subsections,
+}).then(function (docRef) {
+  updateDoc(doc(db, "sections", docRef.id), { id: docRef.id} );
+}).then(() => {window.location.reload(false)});
 
+}
 //if a user isn't logged in, the render this message
   if (!user) {
     return (
