@@ -5,7 +5,7 @@ const EditSubsectionPopup = props => {
   const [logo, setLogo] = React.useState(props.content.logo);
   const [title, setTitle] = React.useState(props.content.title);
   const [description, setDescription] = React.useState(props.content.description);
-  const [url, setUrl] = React.useState("/");
+  const [url, setUrl] = React.useState(props.content.url);
 
 
   return (

@@ -6,6 +6,7 @@ const AddPopup = props => {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [url, setUrl] = React.useState("/");
+
   
   return (
     <div className="popup-box">
@@ -13,7 +14,7 @@ const AddPopup = props => {
         <span className="close-icon" onClick={props.handleClose}>x</span>
         <div className = "popup-container">
           <div className = "edit-header">
-                <h4>Add New Subsection</h4>
+                <h4>Add New Connection</h4>
           </div>
             <form className = "popup-form" onSubmit = {(e) => props.onAdd(e, title, logo, description, url)}>
             <label>Section Title</label>

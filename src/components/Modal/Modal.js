@@ -219,7 +219,7 @@ function SubItem(props) {
                             <img className = "subitem-logo" src = {section.logo} />
                         </div>
                         <div className = 'modal-subitem-text'>
-                                <a href = {section.url} target="_blank"><span className = "modal-subitem-text-header">{section.title}</span> </a>
+                                <a href = {"//"+section.url} target="_blank"><span className = "modal-subitem-text-header">{section.title}</span> </a>
                                 <div className ="modal-subitem-subtitle">
                                     <span className = "modal-subitem-text-subtitle">{section.description}</span>
                                 </div>
