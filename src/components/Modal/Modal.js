@@ -13,10 +13,6 @@ function Header(props){
     const [isEditOpen, setIsEditOpen] = React.useState(false);
     const [isAddOpen, setIsAddOpen] = React.useState(false);
 
-    const [isFree, setIsFree] = React.useState(props.section.tiers.free);
-    const [isGrowth, setIsGrowth] = React.useState(props.section.tiers.growth);
-    const [isVip, setIsVip] = React.useState(props.section.tiers.vip);
-
 
     const toggleEditPopup = () => {
         setIsEditOpen(!isEditOpen);
@@ -77,8 +73,6 @@ function Header(props){
             "growth": isGrowth,
             "vip": isVip,
         }
-
-
         updateDoc(doc(db, "sections", props.section.id), { title: title, logo: logo, description: description, tiers: tiers}).then(
             () => {
                 setIsEditOpen(false);

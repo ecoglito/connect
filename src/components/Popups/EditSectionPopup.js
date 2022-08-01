@@ -5,8 +5,6 @@ const EditSectionPopup = props => {
   const [logo, setLogo] = React.useState(props.content.logo);
   const [title, setTitle] = React.useState(props.content.title);
   const [description, setDescription] = React.useState(props.content.description);
-  const [url, setUrl] = React.useState("/");
-
   
 //   const [isFree, setIsFree] = React.useState(props.content.tiers.free);
   var freeTier = props.content.tiers.free; 
@@ -25,7 +23,7 @@ const EditSectionPopup = props => {
           <div className = "edit-header">
                 <h4>Edit {title}</h4>
           </div>
-            <form className = "popup-form" onSubmit = {(e) => props.onEdit(e, title, logo, description, url, free, isGrowth, isVip)}>
+            <form className = "popup-form" onSubmit = {(e) => {console.log("onsubmit",free); props.onEdit(e, title, logo, description, free, isGrowth, isVip)}}>
             <label>Section Title</label>
             <input onChange = {(e) => setTitle(e.target.value)} value = {title}></input>
 
@@ -41,7 +39,7 @@ const EditSectionPopup = props => {
 
             <div className = "checkbox-flex-container">
                 <p>free</p>
-                <input className = "input-checkbox" type = "checkbox" checked = {free}  onChange = {(e) => setFree(e.target.checked)}></input>
+                <input className = "input-checkbox" type = "checkbox" checked = {free}  onChange = {(e) => {console.log(e.target.checked);setFree(e.target.checked)}}></input>
               </div>
 
             <div className = "checkbox-flex-container">

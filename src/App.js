@@ -69,10 +69,12 @@ const getData = async (tier) => {
 
   if (tier != "admin") {
     const userSection = [];
-    const q = query(collection(db, "sections"), where("tier", "==", tier));
+    const q = query(collection(db, "sections"), where("tiers."+tier, "==", true));
+    //start spinner here
     const querySnapshot = await getDocs(q);
+    //stop spinner
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
+    console.log(doc.id, " => ", doc.data());
     userSection.push(doc.data());
     });
     setData(userSection)
