@@ -17,7 +17,7 @@ const EditSubsectionPopup = props => {
                 <h4>Edit {title}</h4>
           </div>
             <form className = "popup-form" onSubmit = {(e) => props.onEdit(e, title, logo, description, url)}>
-            <label>Section Title</label>
+            <label>Title</label>
             <input onChange = {(e) => setTitle(e.target.value)} value = {title}></input>
 
             <label>Description</label>
