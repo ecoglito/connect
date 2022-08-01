@@ -1,16 +1,15 @@
 import React from "react";
 import "./Popup.css";
  
-const EditSectionPopup = props => {
-  const [logo, setLogo] = React.useState(props.content.logo);
-  const [title, setTitle] = React.useState(props.content.title);
-  const [description, setDescription] = React.useState(props.content.description);
-  
+const AddSectionPopup = props => {
+  const [logo, setLogo] = React.useState("");
+  const [title, setTitle] = React.useState("");
+  const [description, setDescription] = React.useState("");
+ 
 
-  const [isFree, setIsFree] = React.useState(props.content.tiers.free);
-  const [isGrowth, setIsGrowth] = React.useState(props.content.tiers.growth);
-  const [isVip, setIsVip] = React.useState(props.content.tiers.vip);
-
+  const [isFree, setIsFree] = React.useState(true);
+  const [isGrowth, setIsGrowth] = React.useState(true);
+  const [isVip, setIsVip] = React.useState(true);
 
   
   return (
@@ -19,18 +18,17 @@ const EditSectionPopup = props => {
         <span className="close-icon" onClick={props.handleClose}>x</span>
         <div className = "popup-container">
           <div className = "edit-header">
-                <h4>Edit {title}</h4>
+                <h4>Add New Section</h4>
           </div>
-            <form className = "popup-form" onSubmit = {(e) => {props.onEdit(e, title, logo, description, isFree, isGrowth, isVip)}}>
-            <label>Section Title</label>
+            <form className = "popup-form" onSubmit = {(e) => props.onAdd(e, title, logo, description, isFree, isGrowth, isVip)}>
+            <label>Title</label>
             <input onChange = {(e) => setTitle(e.target.value)} value = {title}></input>
-
+          
             <label>Description</label>
             <input onChange = {(e) => setDescription(e.target.value)} value = {description}></input>
 
             <label>Logo</label>
             <input onChange = {(e) => setLogo(e.target.value)} value = {logo}></input>
-
 
             <label>Displayed on tier</label>
             <div className = "checkbox-wrapper">
@@ -52,8 +50,7 @@ const EditSectionPopup = props => {
              
             </div>
            
-            
-            
+
 
             <input className = "submit-btn" type = "submit"></input>
             </form>
@@ -63,4 +60,4 @@ const EditSectionPopup = props => {
   );
 };
  
-export {EditSectionPopup}
+export {AddSectionPopup}

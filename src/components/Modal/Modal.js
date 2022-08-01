@@ -22,20 +22,7 @@ function Header(props){
         setIsAddOpen(!isAddOpen);
       }
 
-    const updateTier = (isFree, isGrowth, isVip) =>  {
-        console.log(isFree,isGrowth,isVip);
-
-        const tiers = {
-            "free": isFree,
-            "growth": isGrowth,
-            "vip": isVip,
-        }
-        
-        console.log(tiers);
-        updateDoc(doc(db,"sections",props.section.id), {tiers:tiers});
-
-
-    }
+    
 
     const onAdd = (e, title, logo, description, url) => {
         e.preventDefault();
@@ -63,13 +50,13 @@ function Header(props){
     }
     
 
-    const onEdit  = (e, title, logo, description, free, isGrowth, isVip) => {
+    const onEdit  = (e, title, logo, description, isFree, isGrowth, isVip) => {
         e.preventDefault();
         console.log("edited the title", title);
-        console.log(free, isGrowth, isVip);
+        console.log(isFree, isGrowth, isVip);
        
         const tiers = {
-            "free": free,
+            "free": isFree,
             "growth": isGrowth,
             "vip": isVip,
         }
@@ -99,28 +86,6 @@ function Header(props){
                     <button className = "modal-popup-btn" onClick={toggleEditPopup}>EDIT SECTION</button>
                     <button className = "modal-popup-btn" onClick={toggleAddPopup}>+ ADD NEW CONNECTION</button>
         
-                {/* <form onSubmit =  {(e) => (e, isFree, isGrowth, isVip)}>
-                    <label>Displayed on tier</label>
-                    <div className = "checkbox-wrapper">
-                        <div className = "checkbox-flex-container">
-                            <p>free</p>
-                            <input className = "input-checkbox" type = "checkbox" checked = {isFree}  onChange = {(e) => setIsFree(e.target.checked)}></input>
-                        </div>
-
-                        <div className = "checkbox-flex-container">
-                            <p>growth</p>
-                            <input className = "input-checkbox" type = "checkbox" checked = {isGrowth}  onChange = {(e) => setIsGrowth(e.target.checked)}></input>
-                        </div>            
-
-                        <div className = "checkbox-flex-container">
-                            <p>vip</p>
-                            <input className = "input-checkbox" type = "checkbox" checked = {isVip}  onChange = {(e) => setIsVip(e.target.checked)}></input>
-                        </div>
-                        <button type="button">submit</button>
-                    </div>
-                </form> */}
-
-
                 </div>}
                 {isEditOpen && <EditSectionPopup
                     onEdit = {onEdit}

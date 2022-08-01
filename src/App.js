@@ -7,7 +7,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React, { useEffect }from 'react';
 import {db} from "./firebase";
 import {where, query, collection, doc, getDoc, getDocs, setDoc, addDoc, updateDoc } from "firebase/firestore"; 
-import { AddPopup } from './components/Popups/AddPopup';
+import { AddSectionPopup } from './components/Popups/AddSectionPopup';
 
 
 function App() {
@@ -91,12 +91,13 @@ const getData = async (tier) => {
 
 }
 
-const onAdd = (e, title, logo, description) => {
+const onAdd = (e, title, logo, description, isFree, isGrowth, isVip) => {
   e.preventDefault();
+
   const tiers = {
-    free: true,
-    growth: true,
-    vip: true,
+    free: isFree,
+    growth: isGrowth,
+    vip: isVip,
   }
 
   const subsections = ["empty"];
@@ -105,7 +106,6 @@ const onAdd = (e, title, logo, description) => {
     title: title,
     description: description,
     logo: logo,
-    tier: "free",
     tiers: tiers,
     subsections: subsections,
 }).then(function (docRef) {
@@ -136,7 +136,7 @@ const onAdd = (e, title, logo, description) => {
                 <button className = "add-section-btn" onClick= {toggleAddPopup}>Add New Section</button> 
                 </div>
                 }
-                {isAddOpen && <AddPopup
+                {isAddOpen && <AddSectionPopup
                 onAdd = {onAdd}
                 handleClose={toggleAddPopup} />
                 }
