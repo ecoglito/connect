@@ -17,7 +17,7 @@ const AddPopup = props => {
                 <h4>Add New Connection</h4>
           </div>
             <form className = "popup-form" onSubmit = {(e) => props.onAdd(e, title, logo, description, url)}>
-            <label>Section Title</label>
+            <label>Title</label>
             <input onChange = {(e) => setTitle(e.target.value)} value = {title}></input>
           
             <label>Description</label>

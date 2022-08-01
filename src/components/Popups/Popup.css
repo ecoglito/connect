@@ -59,11 +59,11 @@
 
   .submit-btn {
       margin-top: 45px; 
-      background-color: #254CDD;
+      background-color: #5883F7;
       color: white;
   }
   .submit-btn:hover{
-    background-color: #0D2A93;
+    background-color: #3d79ff;
     color: white;
     
   }
