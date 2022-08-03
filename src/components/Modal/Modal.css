@@ -174,3 +174,32 @@
 .modal-subitem-subtitle {
     width: 93%;
 }
+
+.modal-info-wrapper-blurred {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    filter: blur(5px);
+}
+
+.subitem-blur-cta {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.blue-span {
+    color: #4C84FF;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.blue-span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

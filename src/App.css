@@ -64,3 +64,7 @@ button {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.header-subheader-container p {
+  color: #8A97AC;
+}

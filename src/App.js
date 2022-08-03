@@ -129,7 +129,10 @@ const onAdd = (e, title, logo, description, isFree, isGrowth, isVip) => {
           <div className ="content">
             <Navbar user = {user}/>  
             <div className ="modal-items">
+              <div className = "header-subheader-container">
                 <h2>Marketplace</h2>
+                <p>Easily connect with our trusted company-building partners to make growing your company 10x easier.</p>
+              </div>
                 <TieredRender/>
                 {tier === "admin" && 
                 <div>

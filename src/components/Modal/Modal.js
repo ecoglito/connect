@@ -165,6 +165,8 @@ function SubItem(props) {
             }
         )
     }
+
+   
     //console.log(section);
     if (props.subsections[0] === "empty") {
         return (
@@ -176,6 +178,11 @@ function SubItem(props) {
     
         )
     }
+    // else if (props.tier === "free") {
+    //     return (
+    //         <BlurredSubsection/>
+    //     )
+    // }
     else {
         return (
             <div className = "modal-subitem-container">
@@ -205,21 +212,55 @@ function SubItem(props) {
     }
 }
 
+const BlurredSubsection = (props) => {
+    const section = props.subsections[props.index];
+    return (
+        <div>
+            <div className = "modal-subitem-container">
+                    <div className = "modal-info-wrapper-blurred">
+                        <div className = "modal-subitem-logo-frame">
+                            <img className = "subitem-logo" src = {section.logo} />
+                        </div>
+                        <div className = 'modal-subitem-text'>
+                               
+                                    <span className = "modal-subitem-text-header">{section.title}</span> 
+                    
+                                <div className ="modal-subitem-subtitle">
+                                    <span className = "modal-subitem-text-subtitle">{section.description}</span>
+                                </div>
+                        </div>
+                    </div>
+                <div className = "subitem-blur-cta"> 
+                Upgrade to <span className = "blue-span">Growth Tier</span> to get exclusive access to perks!
+                </div>
+            </div>
+    </div>
+    );
+}
+
 
 function Modal(props) {
     const end = props.section.subsections ? props.section.subsections.length - 1 : 0;
     return (
             <div className = "modal-container"> 
                 <Header section = {props.section} id = {props.section.id} tier = {props.tier}/>
-                {props.section.subsections && props.section.subsections.map((section,i) => (
-                    <div>
-                    <SubItem parent = {props.section.id} subsections = {props.section.subsections} tier = {props.tier} index = {i}/>
-                    {end != i && <Divider />}
-                    </div>
-                ))}
+                {props.section.subsections && props.section.subsections.map((section,i) => {
+                    if(props.tier === "free" && i >= 2) {
+                        return (<div>
+                        <BlurredSubsection parent = {props.section.id} subsections = {props.section.subsections} tier = {props.tier} index = {i}/>
+                        {end != i && <Divider />}
+                        </div>
+                        );
+                    }
+                    else {
+                        return  (<div>
+                        <SubItem parent = {props.section.id} subsections = {props.section.subsections} tier = {props.tier} index = {i}/>
+                        {end != i && <Divider />}
+                        </div>);
+                    }
+                })}
             </div>
-    )
-    
-}
+                );
+            }
 
 export {Modal};
